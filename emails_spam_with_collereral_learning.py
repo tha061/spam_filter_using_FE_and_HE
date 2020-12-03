@@ -123,9 +123,9 @@ def split_data_set(Index_file):
             newfileName = "news/" + fileName
             with open(newfileName, 'r') as outputF:
                 X[counter] = outputF.read()
-            if ((len(X[counter].split()) > 10000) or (len(X[counter].split()) < 10)) or (len(X[counter].split()) == 0):
-                counter = counter -1
-                max_email += 1
+#            if ((len(X[counter].split()) > 10000) or (len(X[counter].split()) < 10)) or (len(X[counter].split()) == 0):
+#                counter = counter -1
+#                max_email += 1
             counter = counter + 1
             
             with open(newfileName, 'r') as outputF:
@@ -552,12 +552,14 @@ modelPri = keras.Sequential([
     keras.layers.Dense(40),
     keras.layers.Lambda(lambda x: x * x),
     keras.layers.Dense(20),
-    keras.layers.Dense(2000,activation='selu', name = '1layer'),
-    keras.layers.Dense(1000,activation='tanh', name = '2layer'),
-    keras.layers.Dense(500,activation='selu', name = '3layer',kernel_regularizer=tf.keras.regularizers.L1L2(l1=0.03, l2=0.03)),
-    keras.layers.Dense(10,activation='tanh', name = '4layer'),
-    keras.layers.Dense(3, activation='softmax',name='test')
+    keras.layers.Dense(15,activation='relu', name = '1layer'),
+    keras.layers.Dense(10,activation='relu', name = '2layer'),
+    keras.layers.Dense(5,activation='relu', name = '3layer',kernel_regularizer=tf.keras.regularizers.L1L2(l1=0.03, l2=0.03)),
+    #keras.layers.Dense(2,activation='tanh', name = '4layer'),
+    keras.layers.Dense(2, activation='softmax',name='test')
 ])
+    
+######### The above architecture is the one Naveen used for the private task #########        
 modelPri.layers[0].trainable = False
 modelPri.layers[2].trainable = False
 modelPri.layers[0].set_weights(ListFirstLayer)
