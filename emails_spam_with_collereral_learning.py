@@ -554,7 +554,7 @@ modelPri = keras.Sequential([
     keras.layers.Dense(20),
     keras.layers.Dense(15,activation='relu', name = '1layer'),
     keras.layers.Dense(10,activation='relu', name = '2layer'),
-    keras.layers.Dense(5,activation='relu', name = '3layer',kernel_regularizer=tf.keras.regularizers.L1L2(l1=0.03, l2=0.03)),
+    keras.layers.Dense(5,activation='relu', name = '3layer'),
     #keras.layers.Dense(2,activation='tanh', name = '4layer'),
     keras.layers.Dense(2, activation='softmax',name='test')
 ])
@@ -575,7 +575,7 @@ first_layer_weights = modelPri.layers[3].get_weights()
 second_layer_weights = modelPri.layers[4].get_weights()
 third_layer_weights = modelPri.layers[5].get_weights()
 forth_layer_weights = modelPri.layers[6].get_weights()
-fifth_layer_weights = modelPri.layers[7].get_weights()
+#fifth_layer_weights = modelPri.layers[7].get_weights()
 
 #----------------------------------
 
@@ -584,7 +584,7 @@ modelPub = keras.Sequential([
     keras.layers.Dense(40),
     keras.layers.Lambda(lambda x: x * x),
     keras.layers.Dense(20),
-    keras.layers.Dense(8, name = 'secondLayer'),
+    keras.layers.Dense(10, name = 'secondLayer'),    #This was 8 earlier. Changed on 03-12-2020 4.52PM
     keras.layers.Dense(2, activation='sigmoid',name='test')
 ])
 modelPub.layers[0].trainable = False
@@ -673,14 +673,14 @@ inputs = keras.layers.Input(shape=(first_layer_parameter,), name="inputlayer")
 x1 = keras.layers.Dense(40, name="secondlayer")(inputs)
 x2 = keras.layers.Lambda(polyfunc, name="lambdar")(x1)
 x3 = keras.layers.Dense(20, name="Qoutputlayer")(x2)
-x4 = keras.layers.Dense(8, name="test1")(x3)
+x4 = keras.layers.Dense(10, name="test1")(x3)     #Earlier 8. 
 x5 = keras.layers.Dense(2, activation="sigmoid", name="puboutputlayer")(x4)
-x6 = keras.layers.Dense(2000, name="thirdlayer")(x3)
-x7 = keras.layers.Dense(1000, name="forthlayer")(x6)
-x8 = keras.layers.Dense(500, name="fifthlayer")(x7)
-x9 = keras.layers.Dense(10, name="sixlayer")(x8)
-x10 = keras.layers.Dense(3, activation="softmax", name="prioutputlayer")(x9)
-modelCombine = keras.Model(inputs=inputs, outputs=[x5,x10])
+x6 = keras.layers.Dense(15,activation='relu', name="thirdlayer")(x3)
+x7 = keras.layers.Dense(10,activation='relu', name="forthlayer")(x6)
+x8 = keras.layers.Dense(5,activation='relu', name="fifthlayer")(x7)
+#x9 = keras.layers.Dense(10, name="sixlayer")(x8)
+x9 = keras.layers.Dense(2, activation="softmax", name="prioutputlayer")(x8)
+modelCombine = keras.Model(inputs=inputs, outputs=[x5,x9])
 #print("Model combine summary:", file=fi)
 with open('modelsummary.txt', 'a') as ff:
 	print('Model_combine_summary:', file=ff)
@@ -693,14 +693,14 @@ modelCombine.layers[6].trainable = False
 modelCombine.layers[7].trainable = False
 modelCombine.layers[8].trainable = False
 modelCombine.layers[9].trainable = False
-modelCombine.layers[10].trainable = False
-modelCombine.layers[4].set_weights(first_layer_weights)
-modelCombine.layers[5].set_weights(second_layer_weights)
-modelCombine.layers[6].set_weights(third_layer_weights)
-modelCombine.layers[7].set_weights(first_layer_weights_pub)
-modelCombine.layers[8].set_weights(forth_layer_weights)
-modelCombine.layers[9].set_weights(second_layer_weights_pub)
-modelCombine.layers[10].set_weights(fifth_layer_weights)
+#modelCombine.layers[10].trainable = False
+modelCombine.layers[4].set_weights(first_layer_weights_pub)
+modelCombine.layers[5].set_weights(second_layer_weights_pub)
+modelCombine.layers[6].set_weights(first_layer_weights)
+modelCombine.layers[7].set_weights(second_layer_weights)
+modelCombine.layers[8].set_weights(third_layer_weights)
+modelCombine.layers[9].set_weights(forth_layer_weights)
+#modelCombine.layers[10].set_weights(fifth_layer_weights)
 
 modelCombine.compile(optimizer="adam",loss=['binary_crossentropy', 'categorical_crossentropy'],loss_weights = [2.0, -10.0], metrics = ['accuracy'])
 modelCombine.fit(X_train_vector.toarray(),[dummy_y_train,dummy_y_train_private], epochs=50)
@@ -720,20 +720,20 @@ QSixthLayer = modelCombine.layers[6].get_weights()
 QSeventhLayer = modelCombine.layers[7].get_weights()
 QEightLayer = modelCombine.layers[8].get_weights()
 QNineLayer = modelCombine.layers[9].get_weights()
-QTenLayer = modelCombine.layers[10].get_weights()
+#QTenLayer = modelCombine.layers[10].get_weights()
 
 inputs = keras.layers.Input(shape=(first_layer_parameter,), name="inputlayer")
 x1 = keras.layers.Dense(40, name="secondlayer")(inputs)
 x2 = keras.layers.Lambda(polyfunc, name="lambdar")(x1)
 x3 = keras.layers.Dense(20, name="Qoutputlayer")(x2)
-x4 = keras.layers.Dense(8, name="test1")(x3)
+x4 = keras.layers.Dense(10, name="test1")(x3)
 x5 = keras.layers.Dense(2, activation="sigmoid", name="puboutputlayer")(x4)
-x6 = keras.layers.Dense(2000, name="thirdlayer")(x3)
-x7 = keras.layers.Dense(1000, name="forthlayer")(x6)
-x8 = keras.layers.Dense(500, name="fifthlayer")(x7)
-x9 = keras.layers.Dense(10, name="sixlayer")(x8)
-x10 = keras.layers.Dense(3, activation="softmax", name="prioutputlayer")(x9)
-modelPubAftQPri = keras.Model(inputs=inputs, outputs=x10)
+x6 = keras.layers.Dense(15, activation='relu',name="thirdlayer")(x3)
+x7 = keras.layers.Dense(10,activation='relu', name="forthlayer")(x6)
+x8 = keras.layers.Dense(5,activation='relu' ,name="fifthlayer")(x7)
+#x9 = keras.layers.Dense(10, name="sixlayer")(x8)
+x9 = keras.layers.Dense(2, activation="softmax", name="prioutputlayer")(x8)
+modelPubAftQPri = keras.Model(inputs=inputs, outputs=x9)
 modelPubAftQ = keras.Model(inputs=inputs, outputs=x5)
 modelPubAftQ.compile(optimizer="adam",loss='binary_crossentropy',metrics=['accuracy'])
 modelPubAftQPri.compile(optimizer="adam",loss='categorical_crossentropy',metrics=['accuracy'])
