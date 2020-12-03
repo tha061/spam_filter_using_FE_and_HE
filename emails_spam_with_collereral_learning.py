@@ -706,12 +706,12 @@ modelCombine.layers[7].trainable = False
 modelCombine.layers[8].trainable = False
 modelCombine.layers[9].trainable = False
 #modelCombine.layers[10].trainable = False
-modelCombine.layers[4].set_weights(first_layer_weights_pub)
-modelCombine.layers[5].set_weights(second_layer_weights_pub)
-modelCombine.layers[6].set_weights(first_layer_weights)
-modelCombine.layers[7].set_weights(second_layer_weights)
-modelCombine.layers[8].set_weights(third_layer_weights)
-modelCombine.layers[9].set_weights(forth_layer_weights)
+modelCombine.layers[4].set_weights(first_layer_weights)
+modelCombine.layers[5].set_weights(second_layer_weights)
+modelCombine.layers[6].set_weights(third_layer_weights)
+modelCombine.layers[7].set_weights(first_layer_weights_pub)
+modelCombine.layers[8].set_weights(forth_layer_weights)
+modelCombine.layers[9].set_weights(second_layer_weights_pub)
 #modelCombine.layers[10].set_weights(fifth_layer_weights)
 
 modelCombine.compile(optimizer="adam",loss=['binary_crossentropy', 'categorical_crossentropy'],loss_weights = [2.0, -10.0], metrics = ['accuracy'])  # here alpha = 5
