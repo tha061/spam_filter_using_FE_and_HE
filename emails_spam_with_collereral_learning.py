@@ -710,7 +710,7 @@ modelCombine.layers[8].set_weights(third_layer_weights)
 modelCombine.layers[9].set_weights(forth_layer_weights)
 #modelCombine.layers[10].set_weights(fifth_layer_weights)
 
-modelCombine.compile(optimizer="adam",loss=['binary_crossentropy', 'categorical_crossentropy'],loss_weights = [2.0, -10.0], metrics = ['accuracy'])
+modelCombine.compile(optimizer="adam",loss=['binary_crossentropy', 'categorical_crossentropy'],loss_weights = [2.0, -10.0], metrics = ['accuracy'])  # here alpha = 5
 modelCombine.fit(X_train_vector.toarray(),[dummy_y_train,dummy_y_train_private], epochs=50)
 #print("Model combine summary:\n", file=fi)
 #print(modelCombine.summary(), file=fi)
