@@ -98,9 +98,8 @@ def split_data_set(Index_file):
         for line in f:
             if counter % 10000 == 0:
                 print("Input Processing in Progress .......... ", str(counter))
-            
-	    counter +=1
-	    line = line.strip()
+
+            line = line.strip()
             label, key = line.split(';')
             
             # private label
@@ -121,9 +120,10 @@ def split_data_set(Index_file):
             elif label.lower() == 'ham':
                 y[counter] = 0
                 SignalHam = 1
+            counter += 1
 
-            
-	    fileName = key
+
+            fileName = key
             newfileName = "catemail_out/" + fileName
             with open(newfileName, 'r') as outputF:
                 X[counter1] = outputF.read()
@@ -183,8 +183,8 @@ vectorizerHam = CountVectorizer(max_features = 100)
 Trainvectorizer = CountVectorizer()
 X_train_vector = Trainvectorizer.fit_transform(X_train)
 
-XPresentVector = vectorizerTravel.fit_transform(XPresent)
-XNotPresentVector = vectorizerHealth.fit_transform(XNotPresent)
+XPresentVector = vectorizerPresent.fit_transform(XPresent)
+XNotPresentVector = vectorizerNotPresent.fit_transform(XNotPresent)
 #XTechVector = vectorizerTech.fit_transform(XTech)
 XSpamVector = vectorizerSpam.fit_transform(XSpam)
 XHam = vectorizerHam.fit_transform(XHam)
@@ -374,6 +374,7 @@ dummy_y_test_private = np_utils.to_categorical(encoded_Y4)
 #   model
 #---------------------------------------------------------------------
 ### Model for main task: spam classification
+first_layer_parameter = X_train_vector.shape[1]
 model = keras.Sequential([
     keras.layers.InputLayer(input_shape=(first_layer_parameter,)),
     keras.layers.Dense(40),
@@ -392,6 +393,11 @@ with open(file_name, 'a') as ff:
 	with redirect_stdout(ff):
 		model.summary()
 
+
+print("X_train_vector.shape: ")
+print(X_train_vector.shape)
+print("dummy_y_train shape")
+print(dummy_y_train.shape)
 # training phase
 model.fit(X_train_vector.toarray(), dummy_y_train, epochs=30, verbose=2);
 # evaluate on test data
@@ -501,8 +507,6 @@ sys.exit()
 Commented out the sys.exit() and run the python code again. This time, we ignore the new .tflite file
 Just need to specify the directory of .npy files from the first two layers (ignore the lamda layer) in the below code (lines 531-534)
 '''
-
-
 
 
 #-------------------------------------------------------------------------------------
