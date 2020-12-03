@@ -23,7 +23,7 @@ from contextlib import redirect_stdout
 
 tf.compat.v1.enable_eager_execution()
 
-first_layer_parameter = 2000 # we choose the top 2000 words
+
 
 from datetime import date
 today = date.today()
@@ -92,12 +92,15 @@ def split_data_set(Index_file):
     
     yPrivate = [None] * (total) # private label
     counter = 0
+    counter1 = 0
     max_email = 0
     with open(Index_file) as f:
         for line in f:
             if counter % 10000 == 0:
                 print("Input Processing in Progress .......... ", str(counter))
-            line = line.strip()
+            
+	    counter +=1
+	    line = line.strip()
             label, key = line.split(';')
             
             # private label
@@ -119,38 +122,39 @@ def split_data_set(Index_file):
                 y[counter] = 0
                 SignalHam = 1
 
-            fileName = key
+            
+	    fileName = key
             newfileName = "catemail_out/" + fileName
             with open(newfileName, 'r') as outputF:
-                X[counter] = outputF.read()
+                X[counter1] = outputF.read()
 #            if ((len(X[counter].split()) > 10000) or (len(X[counter].split()) < 10)) or (len(X[counter].split()) == 0):
 #                counter = counter -1
 #                max_email += 1
-            counter = counter + 1
+                counter1 = counter1 + 1
             
             with open(newfileName, 'r') as outputF:
                 content = outputF.read()
                 if(SignalPresent == 1):
                     XPresent.append(content)
-                    SignalPresent =0
+                    SignalPresent = 0
                 elif SignalNotPresent ==1:
                     XNotPresent.append(content)
                     SignalNotPresent = 0
                 #elif SignalTech ==1:
                 #    XTech.append(content)
                 #    SignalTech = 0
-                if(SignalCNN ==1):
-                    XCNN.append(content)
-                    SignalCNN = 0
-                elif(SignalFox == 1):
-                    XFox.append(content)
-                    SignalFox = 0
+                if(SignalSpam ==1):
+                    XSpam.append(content)
+                    SignalSpam = 0
+                elif(SignalHam == 1):
+                    XHam.append(content)
+                    SignalHam = 0
     print("the number of news are deleted : " + str(max_email))
-    print("the number of total news: " + str(counter))
+    print("the number of total news: " + str(counter1))
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=2)
     X_train_pri, X_test_pri, y_train_pri, y_test_pri = train_test_split(X, yPrivate, test_size=0.30, random_state=2)
-    return X_train, X_test,y_train, y_test, X_train_pri, X_test_pri, y_train_pri, y_test_pri,XTravel,XHealth,XTech,XFox,XCNN
+    return X_train, X_test,y_train, y_test, X_train_pri, X_test_pri, y_train_pri, y_test_pri, XPresent, XNotPresent, XSpam, XHam
 
 
 #---------------------------------------------------------------------
@@ -161,7 +165,7 @@ def split_data_set(Index_file):
 #   y_train
 #   y_test
 #---------------------------------------------------------------------
-X_train, X_test, y_train, y_test, X_train_pri, X_test_pri, y_train_pri, y_test_pri, XTravel,XHealth,XTech,XFox,XCNN = split_data_set(LABELS_FILE_OUTPUT)
+X_train, X_test, y_train, y_test, X_train_pri, X_test_pri, y_train_pri, y_test_pri,XPresent, XNotPresent, XSpam, XHam = split_data_set(LABELS_FILE_OUTPUT)
 
 
 #---------------------------------------------------------------------
@@ -170,30 +174,30 @@ X_train, X_test, y_train, y_test, X_train_pri, X_test_pri, y_train_pri, y_test_p
 #   X_train_vector
 #   X_test_vector
 #---------------------------------------------------------------------
-vectorizerTravel = CountVectorizer(max_features = 100)
-vectorizerHealth = CountVectorizer(max_features = 100)
-vectorizerTech = CountVectorizer(max_features = 100)
-vectorizerCNN = CountVectorizer(max_features = 100)
-vectorizerFox = CountVectorizer(max_features = 100)
+vectorizerPresent = CountVectorizer(max_features = 100)
+vectorizerNotPresent = CountVectorizer(max_features = 100)
+#vectorizerTech = CountVectorizer(max_features = 100)
+vectorizerSpam = CountVectorizer(max_features = 100)
+vectorizerHam = CountVectorizer(max_features = 100)
 
 Trainvectorizer = CountVectorizer()
 X_train_vector = Trainvectorizer.fit_transform(X_train)
 
-XTravelVector = vectorizerTravel.fit_transform(XTravel)
-XHealthVector = vectorizerHealth.fit_transform(XHealth)
-XTechVector = vectorizerTech.fit_transform(XTech)
-XCNNVector = vectorizerCNN.fit_transform(XCNN)
-XFoxVector = vectorizerFox.fit_transform(XFox)
+XPresentVector = vectorizerTravel.fit_transform(XPresent)
+XNotPresentVector = vectorizerHealth.fit_transform(XNotPresent)
+#XTechVector = vectorizerTech.fit_transform(XTech)
+XSpamVector = vectorizerSpam.fit_transform(XSpam)
+XHam = vectorizerHam.fit_transform(XHam)
 
 TrainVocabulary = Trainvectorizer.get_feature_names()
-TravelVocabulary = vectorizerTravel.get_feature_names()
-HealthVocabulary = vectorizerHealth.get_feature_names()
-TechVocabulary = vectorizerTech.get_feature_names()
-CNNVocabulary = vectorizerCNN.get_feature_names()
-FoxVocabulary = vectorizerFox.get_feature_names()
+PresentVocabulary = vectorizerPresent.get_feature_names()
+NotPresentVocabulary = vectorizerNotPresent.get_feature_names()
+#TechVocabulary = vectorizerTech.get_feature_names()
+SpamVocabulary = vectorizerSpam.get_feature_names()
+HamVocabulary = vectorizerHam.get_feature_names()
 
 
-UnionVocabulary = TravelVocabulary + HealthVocabulary + TechVocabulary + CNNVocabulary + FoxVocabulary
+UnionVocabulary = PresentVocabulary + NotPresentVocabulary + SpamVocabulary + HamVocabulary
 UnionUniqVocabulary = list(set(UnionVocabulary)) # get all unique vocabulary
 print("all unique vocab length = ")
 print(len(UnionUniqVocabulary))
@@ -205,21 +209,26 @@ for item in UnionUniqVocabulary:
     else:
         count += 1
     if count == len(UnionUniqVocabulary):
-        print("all include")
+        print("all included")
+
+	
+vec = 2000
+first_layer_parameter = vec # we choose the top 2000 words
+
 
 # public task
 res = dict(zip(Trainvectorizer.get_feature_names(),mutual_info_classif(X_train_vector, y_train, discrete_features=True)))
 a = {k: v for k, v in sorted(res.items(), key=lambda item: item[1],reverse=True)}
 print("no of vocab in training set regard publ label= ")
 print(len(a)) #number of vocab
-listMIPub = list(a.keys()) # feature vector size with pub label, can choose top 2000, 3000 ...
+listMIPub = list(a.keys())[:vec] # feature vector size with pub label, can choose top 2000, 3000 ...
 
 # private task
 res = dict(zip(Trainvectorizer.get_feature_names(),mutual_info_classif(X_train_vector, y_train_pri, discrete_features=True)))
 a = {k: v for k, v in sorted(res.items(), key=lambda item: item[1],reverse=True)}
 print("no of vocab in training set regard private label= ")
 print(len(a))
-listMIPri = list(a.keys()) # feature vector size with pub label, can choose top 2000, 3000 ...
+listMIPri = list(a.keys())[:vec] # feature vector size with pub label, can choose top 2000, 3000 ...
 
 # first_layer_parameter = len(a)
 
@@ -228,19 +237,19 @@ def reform_data_set(Index_file):
     print("total is " + str(total))
     X = [None] * (total)
     y = [None] * (total)
-    XTravel = []
-    XHealth = []
-    XTech = []
-    XCNN = []
-    XFox = []
-    SignalTravel = 0
-    SignalHealth = 0
-    SignalTech = 0
-    SignalCNN = 0
-    SignalFox = 0
+    XPresent = []
+    XNotPresent = []
+    #XTech = []
+    XSpam = []
+    XHam = []
+    SignalPresent = 0
+    SignalNotPresent = 0
+    #SignalTech = 0
+    SignalPresent = 0
+    SignalNotPresent = 0
     yPrivate = [None] * (total)
     counter = 0
-    max_email = 0
+    deleted_email = 0
     with open(Index_file) as f:
         for line in f:
             if counter % 10000 == 0:
@@ -248,33 +257,31 @@ def reform_data_set(Index_file):
             line = line.strip()
             label, key = line.split(';')
             # private task
-            if lableDic[key] == 'travel':
-                yPrivate[counter] = 2
-                SignalTravel = 1
-            elif lableDic[key] == 'health':
+            if lableDic[key] == 'present':
                 yPrivate[counter] = 1
-                SignalHealth = 1
-            elif lableDic[key] == 'technology':
+                SignalPresent = 1
+            elif lableDic[key] == 'notpresent':
                 yPrivate[counter] = 0
-                SignalTech = 1
+                SignalNotPresent = 1
+            
                 
             # public task
-            if label.lower() == 'cnn':
+            if label.lower() == 'spam':
                 y[counter] = 1
-                SignalCNN = 1
-            elif label.lower() == 'fox':
+                SignalSpam = 1
+            elif label.lower() == 'ham':
                 y[counter] = 0
-                SignalFox = 1
+                SignalHam = 1
 
             fileName = key
-            newfileName = "news/" + fileName
+            newfileName = "catemail_out/" + fileName
             X[counter] = load(newfileName)
             counter = counter + 1
-    print("reform data: the number of mails are deleted : " + str(max_email))
+    print("reform data: the number of mails are deleted : " + str(deleted_email))
     print("reform data: the number of total email: " + str(counter))
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=2)
     X_train_pri, X_test_pri, y_train_pri, y_test_pri = train_test_split(X, yPrivate, test_size=0.30, random_state=2)
-    return X_train, X_test,y_train, y_test, X_train_pri, X_test_pri, y_train_pri, y_test_pri
+    return  X_train, X_test,y_train, y_test, X_train_pri, X_test_pri, y_train_pri, y_test_pri
 
 
 def load(path):
@@ -341,8 +348,8 @@ encode2 = LabelEncoder()
 encode2.fit(y_test)
 encoded_Y2 = encode2.transform(y_test)
 dummy_y_test = np_utils.to_categorical(encoded_Y2)
-np.save('news_dummy_y_test_1', dummy_y_test[1])
-np.save('news_dummy_y_test_entire', dummy_y_test)
+np.save('emails_dummy_y_test_1', dummy_y_test[1])
+# np.save('emails_dummy_y_test_entire', dummy_y_test)
 # print(dummy_y_train.shape)
 
 
@@ -389,7 +396,8 @@ with open(file_name, 'a') as ff:
 model.fit(X_train_vector.toarray(), dummy_y_train, epochs=30, verbose=2);
 # evaluate on test data
 loss, accuracy = model.evaluate(X_test_vector.toarray(), dummy_y_test, verbose=2);
-print('Accuracy before quant: %f' % (accuracy*100), file=open(file_name, "a"))
+print('Main task: Accuracy before quant: %f' % (accuracy*100), file=open(file_name, "a"))
+
 # prediction
 modelPredictionTrain = model.predict(X_train_vector.toarray())
 modelPredictionTest = model.predict(X_test_vector.toarray())
@@ -417,7 +425,7 @@ converter.inference_input_type = tf.uint8
 converter.inference_output_type = tf.uint8
 
 tflite_model_quant = converter.convert()
-trained_model_name = "news_model_quant_io_%s.tflite" %d
+trained_model_name = "emails_mainTask_model_quant_io.tflite" 
 tflite_model_quant_file = tflite_models_dir/trained_model_name
 # tflite_model_quant_file = tflite_models_dir/"news_model_quant_io.tflite"
 tflite_model_quant_file.write_bytes(tflite_model_quant)
@@ -427,7 +435,7 @@ tflite_model_quant_file.write_bytes(tflite_model_quant)
 # test the new quant model
 #---------------------------------------------------------------------------------
 
-tflite_model_quant_file = tflite_models_dir/"news_model_quant_io_Nov-20-2020.tflite"
+tflite_model_quant_file = tflite_models_dir/"emails_mainTask_model_quant_io.tflite"
 interpreter_quant = tf.lite.Interpreter(model_path=str(tflite_model_quant_file))
 interpreter_quant.allocate_tensors()
 # input_index_quant = interpreter_quant.get_input_details()[0]["index"]
@@ -465,7 +473,7 @@ def evaluate_model(interpreter):
     accuracy = accurate_count * 1.0 / len(prediction_digits)
     return accuracy * 100
 X_test_vector.toarray()
-print("Accuracy after quant: %s" % (str(evaluate_model(interpreter_quant))), file=open(file_name, "a"))
+print("Main Task: Accuracy after quant: %s" % (str(evaluate_model(interpreter_quant))), file=open(file_name, "a"))
 
 #### NOTES
 '''
@@ -527,7 +535,7 @@ for data in X_test_vector.toarray():
     i += 1
 
 
-
+### Need to specify the path to these npy files which we get from the tflite quant model using the netron app:
 FQuanFirstLayerWeight = "sequential_dense_MatMul_ReadVariableOp_transpose.npy"
 FQuanFirstLayerBias = "sequential_dense_MatMul_bias.npy"
 FQuanSecondLayerWeight = "sequential_dense_1_MatMul_ReadVariableOp_transpose.npy"
