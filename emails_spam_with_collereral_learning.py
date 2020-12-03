@@ -28,7 +28,7 @@ first_layer_parameter = 2000 # we choose the top 2000 words
 from datetime import date
 today = date.today()
 d = today.strftime("%b-%d-%Y")
-file_name = "news_Prediction_output_%s_hidden_80.txt" %d
+file_name = "email_Prediction_output_%s_collateral.txt" %d
 print("++++++++++++++++++++++++++++++++++++++++++++++\n", file=open(file_name, "a"))
 print("++++++++++++++++++++++++++++++++++++++++++++++\n", file=open(file_name, "a"))
 # print("Start printing logs!", file=open(file_name, "a")
@@ -76,19 +76,19 @@ def split_data_set(Index_file):
     
     
     # private label
-    XTravel = []
-    XHealth = []
-    XTech = []
+    XPresent = []
+    XNotPresent = []
+   # XTech = []
     
     # main label
-    XCNN = []
-    XFox = []
+    XSpam = []
+    XHam = []
     
-    SignalTravel = 0
-    SignalHealth = 0
-    SignalTech = 0
-    SignalCNN = 0
-    SignalFox = 0
+    SignalPresent = 0
+    SignalNotPresent = 0
+    #SignalTech = 0
+    SignalSpam = 0
+    SignalHam = 0
     
     yPrivate = [None] * (total) # private label
     counter = 0
@@ -101,26 +101,26 @@ def split_data_set(Index_file):
             label, key = line.split(';')
             
             # private label
-            if lableDic[key] == 'travel':
-                yPrivate[counter] = 2
-                SignalTravel = 1
-            elif lableDic[key] == 'health':
+            if lableDic[key] == 'present':
                 yPrivate[counter] = 1
-                SignalHealth = 1
-            elif lableDic[key] == 'technology':
+                SignalPresent = 1
+            elif lableDic[key] == 'notpresent':
                 yPrivate[counter] = 0
-                SignalTech = 1
+                SignalNotPresent = 1
+          #  elif lableDic[key] == 'technology':
+           #     yPrivate[counter] = 0
+            #    SignalTech = 1
             
             # public label
-            if label.lower() == 'cnn':
+            if label.lower() == 'spam':
                 y[counter] = 1
-                SignalCNN = 1
-            elif label.lower() == 'fox':
+                SignalSpam = 1
+            elif label.lower() == 'ham':
                 y[counter] = 0
-                SignalFox = 1
+                SignalHam = 1
 
             fileName = key
-            newfileName = "news/" + fileName
+            newfileName = "catemail_out/" + fileName
             with open(newfileName, 'r') as outputF:
                 X[counter] = outputF.read()
 #            if ((len(X[counter].split()) > 10000) or (len(X[counter].split()) < 10)) or (len(X[counter].split()) == 0):
@@ -130,15 +130,15 @@ def split_data_set(Index_file):
             
             with open(newfileName, 'r') as outputF:
                 content = outputF.read()
-                if(SignalTravel == 1):
-                    XTravel.append(content)
-                    SignalTravel =0
-                elif SignalHealth ==1:
-                    XHealth.append(content)
-                    SignalHealth = 0
-                elif SignalTech ==1:
-                    XTech.append(content)
-                    SignalTech = 0
+                if(SignalPresent == 1):
+                    XPresent.append(content)
+                    SignalPresent =0
+                elif SignalNotPresent ==1:
+                    XNotPresent.append(content)
+                    SignalNotPresent = 0
+                #elif SignalTech ==1:
+                #    XTech.append(content)
+                #    SignalTech = 0
                 if(SignalCNN ==1):
                     XCNN.append(content)
                     SignalCNN = 0
