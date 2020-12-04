@@ -293,7 +293,7 @@ def load(path):
     tokens = nltk.word_tokenize(email_text)
 
     # Remove the tokens that are greater than 15 characters
-    tokens = [x for x in tokens if ((x in listMIPub) or (x in listMIPri))]
+    tokens = [x for x in tokens if (x in listMIPub) # or (x in listMIPri))] #only get the vocab with IG from public label
 
     # Combine the tokens with space and build a single string again.
     return " ".join([i.strip() for i in tokens])
