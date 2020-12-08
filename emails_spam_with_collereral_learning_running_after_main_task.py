@@ -430,18 +430,18 @@ converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
 converter.inference_input_type = tf.uint8
 converter.inference_output_type = tf.uint8
 
-tflite_model_quant = converter.convert()
-trained_model_name = "emails_mainTask_model_quant_io_ignore.tflite"
-tflite_model_quant_file = tflite_models_dir/trained_model_name
+#tflite_model_quant = converter.convert()
+#trained_model_name = "emails_mainTask_model_quant_io_ignore.tflite"
+#tflite_model_quant_file = tflite_models_dir/trained_model_name
 # tflite_model_quant_file = tflite_models_dir/"news_model_quant_io.tflite"
-tflite_model_quant_file.write_bytes(tflite_model_quant)
+#tflite_model_quant_file.write_bytes(tflite_model_quant)
 
 
 #---------------------------------------------------------------------------------
 # test the new quant model
 #---------------------------------------------------------------------------------
 
-tflite_model_quant_file = tflite_models_dir/"emails_mainTask_model_quant_io.tflite"
+tflite_model_quant_file = tflite_models_dir/"emails_mainTask_model_quant_io_IG_pub.tflite"
 interpreter_quant = tf.lite.Interpreter(model_path=str(tflite_model_quant_file))
 interpreter_quant.allocate_tensors()
 # input_index_quant = interpreter_quant.get_input_details()[0]["index"]
