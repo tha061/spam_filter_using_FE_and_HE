@@ -751,6 +751,7 @@ maxAccu = 0
 
 ListPubAccuracy = []
 ListPriAccuracy = []
+## can set range to 1 to see the accuracy of one run
 for i in range(5):
     modelPubAftQ.fit(X_train_vector.toarray(),dummy_y_train,epochs=100)
     loss, accuracy = modelPubAftQ.evaluate(X_test_vector.toarray(), dummy_y_test, verbose=2)
@@ -790,6 +791,7 @@ modelPriAftQ.layers[3].set_weights(QThirdLayer)
 minAccu = 100
 maxAccu = 0
 
+## can set range to 1 to see the accuracy of one run
 for i in range(5):
     modelPriAftQ.fit(X_train_vector.toarray(),dummy_y_train_private,epochs=100)
     loss, accuracy = modelPriAftQ.evaluate(X_test_vector.toarray(), dummy_y_test_private, verbose=2)
@@ -800,7 +802,7 @@ for i in range(5):
     ListPriAccuracy.append(accuracy)
 
 #print(modelPubAftQ.summary(), file=fi)
-print("===========modelPubAftQpri=================", file=open(file_name, "a"))
+print("===========modelPriAftQ=================", file=open(file_name, "a"))
 with open(file_name, 'a') as ff:
 	print('Model_Priv_after_Quant_summary:', file=ff)
 	with redirect_stdout(ff):
