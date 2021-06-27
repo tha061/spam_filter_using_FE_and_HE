@@ -5,3 +5,36 @@ The HE scheme is BFV from SEAL library.
 The trained spam classification model weights and bias are converted to integers and used for prediction.
 
 The DTM vector of emails are used for the prediction.
+
+
+
+How to run this library:
+0. make sure you have cmake in your system
+1. install SEAL:
+  git clone -b v3.6.0 https://github.com/microsoft/SEAL.git
+  cd SEAL
+  cmake -DSEAL_THROW_ON_TRANSPARENT_CIPHERTEXT=OFF .
+  make -j
+  sudo make install
+2. git clone 'this-repo-url'
+3. inside spam_filter_with_seal:
+  cmake . -DSEAL_BUILD_SPAMFILTER=ON
+  make 
+4. working directory: native/spam_filter
+
+How to run code:
+1. make 
+2 ./bin/sealspamfilter
+
+
+
+Experiment:
+>>> modify this file for testing with different email dataset: ./HE-based-solution/spam_filtering_with_seal/native/spam_filter/trec07_spam_filter.cpp
+
+
+Some statistics:
+Time taken to encode and encrypt input email vector: 68 miliseconds
+Time taken to encode and encrypt model weight: 2828 miliseconds
+Time taken to predict/classifying: 229 seconds
+
+

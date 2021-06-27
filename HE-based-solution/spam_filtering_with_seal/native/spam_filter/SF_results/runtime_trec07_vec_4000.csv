@@ -1,0 +1,3 @@
+Encrypt weights (ms), Encrypt input vector (ms), Prediction (ms)
+2152.000000, 65.000000, 184754.000000, 
+2089.000000, 63.000000, 185648.000000, 

@@ -1,0 +1,26 @@
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+vec = 3000
+mindf = 1
+total vocab: 35369
+y_train len =  7148
+y_test len =  3064
+Alice: Generating paillier keypair
+#======= with FE ============#
+Accuracy before quant: 98.531330
+Accuracy after quant: 84.10574412532638
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+vec = 3000
+mindf = 1
+total vocab: 35369
+mindf = 1
+total vocab: 35369
+y_train len =  7148
+y_test len =  3064
+#======= with FE ============#
+Accuracy before quant: 98.612922

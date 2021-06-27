@@ -1,0 +1,302 @@
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1819 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 28.9760 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0171 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0031 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.417794
+Accuracy after quant: 97.89711505039972
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1804 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.5758 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0174 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0030 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.356967
+Accuracy after quant: 93.08307264511643
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1820 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.4586 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0174 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0031 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.478626
+Accuracy after quant: 98.01876955161627
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1814 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.7670 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0175 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0031 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.565518
+Accuracy after quant: 97.39311783107404
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1811 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.9999 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0176 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0031 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.548143
+Accuracy after quant: 95.82898852971846
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1820 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.1862 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0172 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0031 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.443865
+Accuracy after quant: 97.53215154675009
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1822 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.8481 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0175 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0032 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.530762
+Accuracy after quant: 97.67118526242614
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1807 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.4584 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0174 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0032 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.383038
+Accuracy after quant: 96.92387904066736
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1815 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.4189 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0174 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0030 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.339592
+Accuracy after quant: 97.288842544317
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1816 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.5460 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0174 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0031 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.504691
+Accuracy after quant: 97.53215154675009
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Alice: Generating paillier keypair
+Alice: Learning spam classifier
+[avg running time: 0.1818 s]
+Classify with model in the clear -- what Alice would get having Bob's data locally
+[avg running time: 0.0000 s]
+test accuracy on plaintext data = 99.42648592283628
+Alice: Encrypting classifier
+[avg running time: 29.7212 s]
+Bob: Scoring with encrypted classifier
+[avg running time: 0.0175 s]
+Alice: Decrypting Bob's scores
+[avg running time: 0.0031 s]
+test accuracy on encrypted data = 99.42648592283628
+Accuracy before quant: 99.400419
+Accuracy after quant: 97.5495307612096
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Accuracy before quant: 99.496001
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+Accuracy before quant: 99.287450
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+min_df = 1
+len(a):  33510
+vec = 3000
+y_train len =  13424
+y_test len =  5754
