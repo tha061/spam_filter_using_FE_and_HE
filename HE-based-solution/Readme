@@ -1,0 +1,7 @@
+This folder is the implementation of our HE-based spam filtering.
+
+The HE scheme is BFV from SEAL library.
+
+The trained spam classification model weights and bias are converted to integers and used for prediction.
+
+The DTM vector of emails are used for the prediction.
