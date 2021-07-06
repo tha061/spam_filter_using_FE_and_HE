@@ -1,9 +1,7 @@
-# Reading In The Dark: Classifying Encrypted Digits with Functional Encryption
+# Spam Filtering with Quadratic Functional Encryption scheme
 
-This code implements the cryptographic part of
-[**Partially Encrypted Machine Learning using Functional Encryption**](https://arxiv.org/abs/1905.10214) (to appear at
-NIPS 2019). The code for the Collateral Learning component can be found
-[**here**](https://github.com/LaRiffle/collateral-learning).
+This code reused the implementation of the Quadratic Functional Encryption scheme introduced in this paper
+[**Partially Encrypted Machine Learning using Functional Encryption**](https://arxiv.org/abs/1905.10214). 
 
 ## Requirements
 
@@ -83,17 +81,7 @@ python3 -O benchmark.py
   * **utils**: Defines some utilities, e.g. for serializing objects and batch exponentiations.
 - **mnist**: Code testing and benchmarking the implementation on the MNIST dataset.
   * **objects**: A directory of directories where objects are stored durably. Should initially contain an instantiation (a choice of Pairing Group with base elements) and a pretrained MNIST model.
-  * **benchmark**: Runs encryption and decryption on the whole MNIST test set and reports the timings. This takes a while.
-  * **confusion_matrix**: Generates the confusion matrix found in the paper.
   * **initialization**: A run once script to run before running anything else. Generates keys and fills the database with discrete logarithm precomputations, which takes some time.
   * **ml_test**: Picks a MNIST digit at random, encrypts it and functionally decrypts it.
   * **setup**: Used to make importing from core easier.
 
-## Issues
-
-Try opening an issue on GitHub.
-
-## Old paper
-
-An earlier version of this work can be found on [**eprint**](https://eprint.iacr.org/2018/206). It may be of interest
-to people who seek a better understanding of this code or of the cryptography involved.
