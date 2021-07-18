@@ -1,6 +1,122 @@
-++++++++++++++++++++++++++++++++++++++++++++++
+
 
 ++++++++++++++++++++++++++++++++++++++++++++++
-
+inst = 'objects/instantiations/MNT159.inst'
 Vector length =  2000
 classes = 10
+Average gen func key: 0.25530969200190157s.
+Running stats:
+=================
+Average encryption time: 21.79188055091072s.
+Average decryption time: 23.022924468968995s.
+Average evaluation time: 9.027010229066946s.
+Average decrete logarithm time: 40.044304891023785s.
+Average classification time: 0.24427521403413266
+Average prediction time: 23.267199683003128
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+inst = 'objects/instantiations/mnt159_th.inst'
+Vector length =  2000
+classes = 10
+Average gen func key: 0.2565098989289254s.
+Running stats:
+=================
+Average encryption time: 21.709645206923597s.
+Average decryption time: 23.12793158600107s.
+Average evaluation time: 9.04030325601343s.
+Average decrete logarithm time: 134.8825091230683s.
+Average classification time: 1.5315555999986827
+Average prediction time: 24.65948718599975
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt159_th.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.2505974560044706s.
+Running stats:
+=================
+Average encryption time: 21.4200156229781s.
+Average decryption time: 22.952730751014315s.
+Average evaluation time: 0.0s.
+Average decrete logarithm time: 0.0s.
+Average classification time: 0.1843575210077688
+Average prediction time: 23.137088272022083
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt159_th.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.24999044102150947s.
+Running stats:
+Average accuracy: 100.0.
+Total errors: 0.
+=================
+Average encryption time: 21.516929852077737s.
+Average decryption time: 22.913927040994167s.
+Average evaluation time: 0.0s.
+Average decrete logarithm time: 0.0s.
+Average classification time: 0.18140219303313643
+Average prediction time: 23.095329234027304
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/bn254_th.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.3760098849888891s.
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/bn254_th.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.35441417898982763s.
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/bn254_th.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.3588010669918731s.
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt159_th.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.44471452198922634s.
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/MNT159.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.3986099340254441s.
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/MNT159.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.40457443706691265s.
+Running stats:
+Average accuracy: 100.0.
+Total errors: 0.
+=================
+Average encryption time: 40.20188775996212s.
+Average decryption time: 30.83542793802917s.
+Average evaluation time: 15.348881184007041s.
+Average decrete logarithm time: 44.44598872796632s.
+Average classification time: 0.5118352059507743
+Average prediction time: 31.347263143979944

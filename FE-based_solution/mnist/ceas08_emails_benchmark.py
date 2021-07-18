@@ -40,8 +40,9 @@ print("++++++++++++++++++++++++++++++++++++++++++++++\n", file=open(file_name, "
 # ff = open(file_name, "w")
 # print("Start printing logs!", file=open(file_name, "a")
 
-# inst = 'objects/instantiations/MNT159.inst'
-inst = 'objects/instantiations/mnt159_th.inst'
+inst = 'objects/instantiations/MNT159.inst'
+# inst = 'objects/instantiations/mnt159_th.inst'
+print("inst = {}".format(inst), file=open(file_name, "a"))
 vector_length = 2000 #33510 #2000 # for news; 2000 for emails
 print("Vector length =  %s" %str(vector_length), file=open(file_name, "a"))
 k = 40
@@ -92,10 +93,12 @@ print('Done!\n')
 
 print('Importing keys...')
 pk = models.PublicKey(
-    source='objects/pk/common_mnt159_th_{}.pk'.format(vector_length)
+    # source='objects/pk/common_mnt159_th_{}.pk'.format(vector_length)
+    source='objects/pk/common_{}.pk'.format(vector_length)
 )
 msk = models.MasterKey(
-    source='objects/msk/common_mnt159_th_{}.msk'.format(vector_length)
+    # source='objects/msk/common_mnt159_th_{}.msk'.format(vector_length)
+    source='objects/msk/common_{}.msk'.format(vector_length)
 )
 print('Done!\n')
 
@@ -128,6 +131,8 @@ print('Done!\n')
 
 
 # sys.exit()
+
+
 #===========================================#
 enc_total = 0
 eval_total = 0
@@ -207,7 +212,7 @@ modelPub.layers[1].set_weights(ListOutputLayer)
 
 
 # num_test = len(X_test)
-num_test = 2
+num_test = 1
 # print("Number of emails tested = %s" % (str(num_test)))
 
 for i in range(num_test):
@@ -229,9 +234,7 @@ for i in range(num_test):
     enc_time = after_encrypt - before_encrypt
     enc_total += enc_time
     print("enc_time: ", enc_time)
-    #print("after encrypt: ")
-    #print(c)
-    #print("number of encrypted elem {}".format(c.shape))
+
 
     # separate evaluation and decrete loga
     before_eval = timeit.default_timer()
@@ -253,7 +256,7 @@ for i in range(num_test):
     dlog_total += dlog_time
     print("dlog_time: ", dlog_time)
 
-    # decryption
+    # decryption at once
     before_dec = timeit.default_timer()
     dec = scheme.decrypt(pk, dk, c)
     after_dec = timeit.default_timer()
@@ -293,8 +296,8 @@ for i in range(num_test):
 print('Running stats:', file=open(file_name, "a"))
 
 # print('=================', file=open(file_name, "a"))
-# print('Average accuracy: {}.'.format(100 * correct / (num_test)), file=open(file_name, "a"))
-# print('Total errors: {}.'.format(errors), file=open(file_name, "a"))
+print('Average accuracy: {}.'.format(100 * correct / (num_test)), file=open(file_name, "a"))
+print('Total errors: {}.'.format(errors), file=open(file_name, "a"))
 print('=================', file=open(file_name, "a"))
 print('Average encryption time: {}s.'.format(enc_total/(num_test)), file=open(file_name, "a"))
 print('Average decryption time: {}s.'.format(dec_total / (num_test)), file=open(file_name, "a"))
