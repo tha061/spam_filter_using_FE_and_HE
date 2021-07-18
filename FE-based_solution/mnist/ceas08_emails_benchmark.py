@@ -40,8 +40,9 @@ print("++++++++++++++++++++++++++++++++++++++++++++++\n", file=open(file_name, "
 # ff = open(file_name, "w")
 # print("Start printing logs!", file=open(file_name, "a")
 
-inst = 'objects/instantiations/MNT159.inst'
-vector_length = 1000 #33510 #2000 # for news; 2000 for emails
+# inst = 'objects/instantiations/MNT159.inst'
+inst = 'objects/instantiations/mnt159_th.inst'
+vector_length = 2000 #33510 #2000 # for news; 2000 for emails
 print("Vector length =  %s" %str(vector_length), file=open(file_name, "a"))
 k = 40
 classes = 10 # for decrete log
@@ -49,8 +50,8 @@ print("classes = {}".format(classes), file=open(file_name, "a"))
 model ='objects/ml_models/ceas_SpamModel_{}-40-20-10-2.mlm'.format(vector_length)
 #X, y = mnist["data"].astype('float'), mnist["target"].astype('float')
 
-X_test = np.load('ceas08_1000/email_X_test_vector_length_1000_1.npy').astype('float')
-y_test = np.load('ceas08_1000/email_dummy_y_test_X_1000_1.npy').astype('float')
+X_test = np.load('ceas08_2000/email_X_test_vector_length_2000_1.npy').astype('float')
+y_test = np.load('ceas08_2000/email_dummy_y_test_X_2000_1.npy').astype('float')
 
 
 # print("length of X_test: " + str(len(X_test)))
@@ -68,9 +69,44 @@ print('Done!\n')
 
 print('Importing model.')
 ml = models.MLModel(source=model)
-
 biased = np.ones(vector_length+1)
 
+print('Done!\n')
+
+
+
+# print('Importing discrete logarithm.')
+#
+# dlog = discretelogarithm.PreCompBabyStepGiantStep(
+#     scheme.group,
+#     scheme.gt,
+#     minimum=-1.7e+11,
+#     maximum=2.7e+11,
+#     step=1 << 13,
+# )
+#
+# scheme.set_dlog(
+#     dlog
+# )
+# print('Done!\n')
+
+print('Importing keys...')
+pk = models.PublicKey(
+    source='objects/pk/common_mnt159_th_{}.pk'.format(vector_length)
+)
+msk = models.MasterKey(
+    source='objects/msk/common_mnt159_th_{}.msk'.format(vector_length)
+)
+print('Done!\n')
+
+
+
+print('Generating functional decryption key...')
+before_gen_df_key = timeit.default_timer()
+dk = scheme.keygen(msk, ml) # using model parameters to generate a functional decryption key
+after_gen_df_key = timeit.default_timer()
+gen_key = after_gen_df_key - before_gen_df_key
+print('Average gen func key: {}s.'.format(gen_key), file=open(file_name, "a"))
 print('Done!\n')
 
 
@@ -90,24 +126,6 @@ scheme.set_dlog(
 )
 print('Done!\n')
 
-print('Importing keys...')
-pk = models.PublicKey(
-    source='objects/pk/common_{}.pk'.format(vector_length)
-)
-msk = models.MasterKey(
-    source='objects/msk/common_{}.msk'.format(vector_length)
-)
-print('Done!\n')
-
-
-
-print('Generating functional decryption key...')
-before_gen_df_key = timeit.default_timer()
-dk = scheme.keygen(msk, ml) # using model parameters to generate a functional decryption key
-after_gen_df_key = timeit.default_timer()
-gen_key = after_gen_df_key - before_gen_df_key
-print('Average gen func key: {}s.'.format(gen_key), file=open(file_name, "a"))
-print('Done!\n')
 
 # sys.exit()
 #===========================================#
@@ -143,7 +161,7 @@ modelPub = keras.Sequential([
     keras.layers.Dense(2, activation='sigmoid',name='output')
 ])
 
-dir = "ceas08_1000"
+dir = "ceas08_2000"
 HiddenLayer3_Weight = dir+ "/sequential_hidden_3_MatMul_ReadVariableOp_transpose.npy"
 HiddenLayer3_Bias = dir + "/sequential_hidden_3_MatMul_bias.npy"
 
@@ -210,9 +228,10 @@ for i in range(num_test):
     after_encrypt = timeit.default_timer()
     enc_time = after_encrypt - before_encrypt
     enc_total += enc_time
-    print("after encrypt: ")
-    print(c)
-    print("number of encrypted elem {}".format(c.shape))
+    print("enc_time: ", enc_time)
+    #print("after encrypt: ")
+    #print(c)
+    #print("number of encrypted elem {}".format(c.shape))
 
     # separate evaluation and decrete loga
     before_eval = timeit.default_timer()
@@ -225,13 +244,14 @@ for i in range(num_test):
     after_eval = timeit.default_timer()
     eval_time = after_eval - before_eval
     eval_total += eval_time
+    print("eval_time: ", eval_time)
 
     before_dlog = timeit.default_timer()
     dec = list(map(dlog.solve, decrypted))  # decrypted result: plaintext label of the encrypted data
     after_dlog = timeit.default_timer()
     dlog_time = after_dlog - before_dlog
     dlog_total += dlog_time
-
+    print("dlog_time: ", dlog_time)
 
     # decryption
     before_dec = timeit.default_timer()
@@ -239,6 +259,7 @@ for i in range(num_test):
     after_dec = timeit.default_timer()
     dec_time = after_dec - before_dec
     dec_total += dec_time
+    print("dec_time: ", dec_time)
 
     # need to carefu about the broadcast error when deal with array/list dimension
     dec = np.reshape(np.asarray(dec),(1,20))
@@ -249,9 +270,11 @@ for i in range(num_test):
     time2 = timeit.default_timer() # end prediction
     classi_time = time2 - time1
     classi_total += classi_time
+    print("classi_time: ", classi_time)
 
     # dec_time = after_dec - before_dec
     pred_total += (dec_time + classi_time)
+    print("pred_total:", pred_total)
 
     # print("res=")
     # print(res)

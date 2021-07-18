@@ -13,6 +13,8 @@ from .models import (
     MLModel,
     PublicKey
 )
+
+from charm.toolbox.pairinggroup import PairingGroup
 from .utils import exp, fast_exp_const_time, is_array, Serializable
 
 
@@ -20,14 +22,23 @@ class ML_DGP(Serializable):
 
     ext_ = 'inst'
 
+    
+    # added by Tham July 2021
+    def export(self, path, filename):
+        self.toFile(path, filename)
+
+
     def __init__(self, source=''):
         if source:
             self.fromFile(source)
             print(dir(self))
             return
 
-    def create_(group):
+    def create_(self, group):
+        # print("group = ", group)
+        # print(type(group))
         instance = ML_DGP()
+        print("instance: ", instance)
         instance.group = group
         instance.g1 = instance.group.random(G1)
         instance.g2 = instance.group.random(G2)

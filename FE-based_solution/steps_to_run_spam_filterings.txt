@@ -1,0 +1,10 @@
+Inputs:
+
+1) feature vector of an email: e.g., email_X_test_vector_length_2000_1.npy  in ceas08_2000/ 
+2) encoded email label: e.g., email_dummy_y_test_X_2000_1.npy in ceas08_2000/
+3) ML model in objects/ml_model: e.g., ceas_SpamModel_2000-40-2-20-2-Nov-12-2020.mlm which was generated from mnist/ceas_model_encryption.py
+4) keys in objects/pk and objects/msk
+5) pairing group curve instance in objects/instantiations/
+
+
+Run this Script: ceas08_emails_benchmark.py to evaluate the scheme's performance

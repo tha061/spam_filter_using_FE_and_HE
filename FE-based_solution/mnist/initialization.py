@@ -19,26 +19,30 @@ from core import (
 )
 import os
 
-inst = 'objects/instantiations/MNT159.inst'
+# inst = 'objects/instantiations/MNT159.inst'
+inst = 'objects/instantiations/mnt159_th.inst'
 #model = 'objects/ml_models/SpamModel_2491.mlm'
-vector_length =  4000
+vector_length =  2000
 
 if not os.path.exists('objects/msk'):
     os.makedirs('objects/msk')
 if not os.path.exists('objects/pk'):
     os.makedirs('objects/pk')
-if not os.path.exists('objects/msk/common_{}.msk'.format(vector_length)):
+if not os.path.exists('objects/msk/common_mnt159_th_{}.msk'.format(vector_length)):
     print('Generating keys.')
     make_keys.make_keys(
         vector_length,
         inst=inst,
-        name='common',
+        name='common_mnt159_th',
         path='objects',
     )
     print('Done!\n')
 else:
     print('Keys were already generated.\n')
+
+
 print('Precomputing discrete logarithm.')
+
 scheme = scheme.ML_DGP(inst)
 dlog = discretelogarithm.PreCompBabyStepGiantStep(
     scheme.group,

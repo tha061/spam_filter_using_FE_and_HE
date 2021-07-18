@@ -1,5 +1,0 @@
-This folder is for our FE-based spam filtering approach.
-
-The trained spam classification model weights and bias are converted to integers and used for prediction.
-
-The functional encryption scheme used in our implementation is proposed in 

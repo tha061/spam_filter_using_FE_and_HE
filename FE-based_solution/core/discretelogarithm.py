@@ -38,7 +38,9 @@ class PreCompBabyStepGiantStep:
         assert isinstance(step, int)
         assert not step < 0
         self.group = groupObj
+        print("groupObj: ", groupObj)
         self.base = base
+        print("base: ", base)
         self.minimum = math.floor(minimum/step)*(step)
         self.maximum = math.ceil(maximum//step)*(step)
         self.step = step
@@ -174,8 +176,7 @@ class PreCompBabyStepGiantStep:
         conn = self.get_conn()
         cursor = conn.cursor()
         cursor.execute(
-            'prepare sel as select log from '
-            '{} where hash=$1'.format(self.table)
+            'prepare sel as select log from {} where hash=$1'.format(self.table)
         )
         for i in range(0, self.step):
             h = hash(curr)

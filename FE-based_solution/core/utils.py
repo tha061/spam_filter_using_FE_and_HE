@@ -30,7 +30,10 @@ class Serializable:
             return d
 
     def deserialize(self, o):
+        # print("Check deserialize function:")
+        # print("o: ", o)
         assert type(o) == dict, 'Wrong file format.'
+        # print("type(o): ", type(o))
         if 'param' in o:
             self.group = PairingGroup(o['param'])
             assert 'rest' in o, 'Wrong file format.'
@@ -59,7 +62,9 @@ class Serializable:
 
     def fromFile(self, source):
         assert isinstance(source, str)
+        #print("assert isinstance(source, str): {}".format(isinstance(source, str)))
         assert os.path.isfile(source)
+        #print("assert os.path.isfile(source): {}".format(os.path.isfile(source)))
         with open(source, 'r') as f:
             final = f.read()
             encoded = bytes(final, 'utf-8')
@@ -67,6 +72,9 @@ class Serializable:
             by = zlib.decompress(compressed)
             js = by.decode('utf-8')
             serialized = json.loads(js, object_hook=from_json)
+            # print("Test fromFile function\n")
+            print(type(serialized))
+            print(serialized)
             return self.deserialize(serialized)
 
 
