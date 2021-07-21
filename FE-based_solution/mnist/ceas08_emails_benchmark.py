@@ -40,10 +40,10 @@ print("++++++++++++++++++++++++++++++++++++++++++++++\n", file=open(file_name, "
 # ff = open(file_name, "w")
 # print("Start printing logs!", file=open(file_name, "a")
 
-inst = 'objects/instantiations/MNT159.inst'
-# inst = 'objects/instantiations/mnt159_th.inst'
+# inst = 'objects/instantiations/MNT159.inst'
+inst = 'objects/instantiations/mnt224_th.inst'
 print("inst = {}".format(inst), file=open(file_name, "a"))
-vector_length = 2000 #33510 #2000 # for news; 2000 for emails
+vector_length = 5000 #33510 #2000 # for news; 2000 for emails
 print("Vector length =  %s" %str(vector_length), file=open(file_name, "a"))
 k = 40
 classes = 10 # for decrete log
@@ -51,8 +51,8 @@ print("classes = {}".format(classes), file=open(file_name, "a"))
 model ='objects/ml_models/ceas_SpamModel_{}-40-20-10-2.mlm'.format(vector_length)
 #X, y = mnist["data"].astype('float'), mnist["target"].astype('float')
 
-X_test = np.load('ceas08_2000/email_X_test_vector_length_2000_1.npy').astype('float')
-y_test = np.load('ceas08_2000/email_dummy_y_test_X_2000_1.npy').astype('float')
+X_test = np.load('ceas08_5000/email_X_test_vector_length_5000_1.npy').astype('float')
+y_test = np.load('ceas08_5000/email_dummy_y_test_X_5000_1.npy').astype('float')
 
 
 # print("length of X_test: " + str(len(X_test)))
@@ -93,12 +93,12 @@ print('Done!\n')
 
 print('Importing keys...')
 pk = models.PublicKey(
-    # source='objects/pk/common_mnt159_th_{}.pk'.format(vector_length)
-    source='objects/pk/common_{}.pk'.format(vector_length)
+    source='objects/pk/common_mnt224_th_{}.pk'.format(vector_length)
+    # source='objects/pk/common_{}.pk'.format(vector_length)
 )
 msk = models.MasterKey(
-    # source='objects/msk/common_mnt159_th_{}.msk'.format(vector_length)
-    source='objects/msk/common_{}.msk'.format(vector_length)
+    source='objects/msk/common_mnt224_th_{}.msk'.format(vector_length)
+    # source='objects/msk/common_{}.msk'.format(vector_length)
 )
 print('Done!\n')
 
@@ -166,7 +166,7 @@ modelPub = keras.Sequential([
     keras.layers.Dense(2, activation='sigmoid',name='output')
 ])
 
-dir = "ceas08_2000"
+dir = "ceas08_5000"
 HiddenLayer3_Weight = dir+ "/sequential_hidden_3_MatMul_ReadVariableOp_transpose.npy"
 HiddenLayer3_Bias = dir + "/sequential_hidden_3_MatMul_bias.npy"
 
@@ -212,7 +212,7 @@ modelPub.layers[1].set_weights(ListOutputLayer)
 
 
 # num_test = len(X_test)
-num_test = 1
+num_test = 5
 # print("Number of emails tested = %s" % (str(num_test)))
 
 for i in range(num_test):

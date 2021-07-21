@@ -1,0 +1,79 @@
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt224_th.inst
+Vector length =  2000
+classes = 10
+Average gen func key: 0.3041123428847641s.
+Running stats:
+Average accuracy: 100.0.
+Total errors: 0.
+=================
+Average encryption time: 32.816362496931106s.
+Average decryption time: 24.38717282190919s.
+Average evaluation time: 10.050340715097263s.
+Average decrete logarithm time: 40.16154788504355s.
+Average classification time: 0.26232566381804645
+Average prediction time: 24.649498485727236
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt224_th.inst
+Vector length =  3000
+classes = 10
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt224_th.inst
+Vector length =  3000
+classes = 10
+Average gen func key: 0.377039868850261s.
+Running stats:
+Average accuracy: 100.0.
+Total errors: 0.
+=================
+Average encryption time: 50.459235745063054s.
+Average decryption time: 32.94627410788089s.
+Average evaluation time: 15.35764237139374s.
+Average decrete logarithm time: 21.95871197357774s.
+Average classification time: 0.06695442064665258
+Average prediction time: 33.01322852852754
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt224_th.inst
+Vector length =  4000
+classes = 10
+Average gen func key: 0.4703778389375657s.
+Running stats:
+Average accuracy: 100.0.
+Total errors: 0.
+=================
+Average encryption time: 67.18585594957695s.
+Average decryption time: 40.169646518398075s.
+Average evaluation time: 19.13350216206163s.
+Average decrete logarithm time: 23.596176186203955s.
+Average classification time: 0.053517732210457324
+Average prediction time: 40.223164250608534
+++++++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++
+
+inst = objects/instantiations/mnt224_th.inst
+Vector length =  5000
+classes = 10
+Average gen func key: 0.5532594111282378s.
+Running stats:
+Average accuracy: 100.0.
+Total errors: 0.
+=================
+Average encryption time: 83.88312711087056s.
+Average decryption time: 44.04744709497318s.
+Average evaluation time: 26.056332061206923s.
+Average decrete logarithm time: 18.801300773397088s.
+Average classification time: 0.05189714496955276
+Average prediction time: 44.09934423994273

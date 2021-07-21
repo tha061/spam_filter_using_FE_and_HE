@@ -20,7 +20,7 @@ from core import (
 import os
 
 # inst = 'objects/instantiations/MNT159.inst'
-inst = 'objects/instantiations/mnt224_th.inst'
+inst = 'objects/instantiations/bn254_th.inst'
 #model = 'objects/ml_models/SpamModel_2491.mlm'
 vector_length =  2000
 
@@ -29,13 +29,13 @@ if not os.path.exists('objects/msk'):
 if not os.path.exists('objects/pk'):
     os.makedirs('objects/pk')
 # if not os.path.exists('objects/msk/common_{}.msk'.format(vector_length)):
-if not os.path.exists('objects/msk/common_mnt224_th_{}.msk'.format(vector_length)):
+if not os.path.exists('objects/msk/common_bn254_th_{}.msk'.format(vector_length)):
     print('Generating keys.')
     make_keys.make_keys(
         vector_length,
         inst=inst,
         # name='common',
-        name='common_mnt224_th',
+        name='common_bn254_th',
         path='objects',
     )
     print('Done!\n')
