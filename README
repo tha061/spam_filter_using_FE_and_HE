@@ -1,0 +1,20 @@
+This work has been published in Computer Communications Volume 197, 1 January 2023, Pages 230-241.
+Please check out our paper and cite to this paper if you use this repo in your research.
+
+@article{NGUYEN2023230,
+title = {Privacy-preserving spam filtering using homomorphic and functional encryption},
+journal = {Computer Communications},
+volume = {197},
+pages = {230-241},
+year = {2023},
+issn = {0140-3664},
+doi = {https://doi.org/10.1016/j.comcom.2022.11.002},
+url = {https://www.sciencedirect.com/science/article/pii/S0140366422004261},
+author = {Tham Nguyen and Naveen Karunanayake and Sicong Wang and Suranga Seneviratne and Peizhao Hu},
+keywords = {Spam filtering, Deep neural networks, Functional encryption, Homomorphic encryption},
+abstract = {Conventional spam classification requires the end-users to reveal the content of incoming emails to a classifier so that text analysis can be performed. On the other hand, new cryptographic primitives allow this classification task to be performed on encrypted emails without revealing the email contents, hence preserves user data privacy. In this paper, we construct a spam classification framework that enables the classification of encrypted emails. Our model is based on a neural network with a quadratic network component and a multi-layer perceptron network component. The quadratic network architecture is compatible with the operation of an existing quadratic functional encryption scheme. To protect email content privacy, we proposed two spam classification solutions based on homomorphic encryption (HE) and functional encryption (FE) that enables our classifiers to predict the label of encrypted emails. The evaluation results on real-world spam datasets indicate that our proposed spam classification solutions achieve accuracies over 95%. Our performance study and security analysis provide pros and cons of each proposed solution. For instance, the FE solution predicts a label of an encrypted email in less than 31 s whereas the HE solution takes up to 265 s to do so. Nonetheless, the HE solution is not prone to potential information leakage as the FE solution.}
+}
+         
+Thank you,
+
+The Authors
